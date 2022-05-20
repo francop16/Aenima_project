@@ -45,16 +45,28 @@ class ProductosController extends Controller
             'nombre' => 'required',
             'descripcion' => 'required',
             'precio' => 'required|min:0',
-           
+            'imagen' => 'required',
             
         ]);            
-      
+       
+     
         
         $productoNuevo = new Producto;
         $productoNuevo->nombre = $request->nombre;
         $productoNuevo->descripcion=$request->descripcion;
         $productoNuevo->precio= $request->precio;
-        $productoNuevo->img = "13123183cdchdchcb";
+        if ($request->hasFile('imagen')){
+           
+            $file = $request->file('imagen');
+            $imgPath ='img/productos/';
+            $filename = time().'-'.$file->getClientOriginalName();
+            $uploadSuccess = $request->file('imagen')->move($imgPath,$filename);
+           
+            $productoNuevo->img =  $imgPath.$filename;
+            
+            
+          
+        }
 
         $productoNuevo->save();
 

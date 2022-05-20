@@ -30,7 +30,7 @@
         
                 @endforeach
             </ul>
-            <form action="{{ route('guardarProducto')}}" method="POST" class="row" >
+            <form action="{{ route('guardarProducto')}}" method="POST" class="row" enctype="multipart/form-data" >
                 @csrf
                 <div class="row container col-12 ">
                     @if ( session('mensaje') )
@@ -49,7 +49,7 @@
                         <input class="form-control" type="number" step="any" name="precio" min="0" placeholder="Precio $00.00" value={{ old('precio') }}>
                     </div>
                     <div class="col-lg-12 col-md-12 col-sm-12 mb-2  ">
-{{--                    <input class="form-control col-lg-8 col-md-8 col-sm-12 mb-2" type="text" name="imagen" placeholder="imagen" value={{ old('imagen') }}>  --}}   
+                        <input class="form-control col-lg-8 col-md-8 col-sm-12 mb-2" type="file" name="imagen" placeholder="imagen" >     
                     </div>
      
                  </div>

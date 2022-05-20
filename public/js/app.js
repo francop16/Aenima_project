@@ -27948,7 +27948,9 @@ var render = function () {
       : _c("div", [
           _c(
             "ul",
-            { staticClass: "col-lg-12 col-md-12 col-sm-12 row container" },
+            {
+              staticClass: "col-lg-12 col-md-12 col-sm-12 row container d-flex",
+            },
             _vm._l(_vm.productosCargados, function (producto, id) {
               return _c(
                 "li",
@@ -27963,15 +27965,12 @@ var render = function () {
                     { staticClass: "card", staticStyle: { width: "18rem" } },
                     [
                       _c("img", {
-                        staticClass: "card-img-top",
-                        attrs: {
-                          src: "https://irecetasfaciles.com/wp-content/uploads/2018/05/Hamburguesa-cl%C3%A1sica-estilo-Whopper-de-Burger-King.jpg",
-                          alt: "Card image cap",
-                        },
+                        staticClass: "card-img-top background-size: cover;",
+                        attrs: { src: producto.img },
                       }),
                       _vm._v(" "),
                       _c("div", { staticClass: "card-body" }, [
-                        _c("h5", { staticClass: "card-title" }, [
+                        _c("h5", { staticClass: "card-title " }, [
                           _vm._v(_vm._s(producto.nombre)),
                         ]),
                         _vm._v(" "),

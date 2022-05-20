@@ -9,13 +9,13 @@
       </div>
       <div v-else>
 
-        <ul class="col-lg-12 col-md-12 col-sm-12 row container">
+        <ul class="col-lg-12 col-md-12 col-sm-12 row container d-flex">
           <li style="list-style:none" v-for="(producto, id) in productosCargados" :key="id" class="col-lg-4 col-md-6 col-sm-12 mt-2">
              
                   <div class="card" style="width: 18rem;">
-                    <img class="card-img-top"  src="https://irecetasfaciles.com/wp-content/uploads/2018/05/Hamburguesa-cl%C3%A1sica-estilo-Whopper-de-Burger-King.jpg" alt="Card image cap">
+                    <img class="card-img-top background-size: cover;"  :src="producto.img" >
                     <div class="card-body">
-                      <h5 class="card-title">{{producto.nombre}}</h5>
+                      <h5 class="card-title ">{{producto.nombre}}</h5>
                       <p class="card-text">{{producto.descripcion}}</p>
                       <p class="card-text">{{producto.precio}}</p>
                       <a @click="editar(producto.id)"  class="btn btn-primary">Ver Detalle</a>
