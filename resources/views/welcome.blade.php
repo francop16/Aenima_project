@@ -12,7 +12,7 @@
         <!-- Scripts
         <script src="{{ asset('js/app.js') }}" defer></script> -->
         <!-- Scripts para heroku -->
-        <script src="{{ source_asset('js/app.js') }}" defer></script>
+        <script src="{{ secure_asset('js/app.js') }}" defer></script>
     
         <!-- Fonts -->
         <link rel="dns-prefetch" href="//fonts.gstatic.com">
@@ -21,7 +21,7 @@
         <!-- Styles 
         <link href="{{ asset('css/app.css') }}" rel="stylesheet"> -->
         <!-- Styles para heroku -->
-        <link href="{{ source_asset('css/app.css') }}" rel="stylesheet">
+        <link href="{{ secure_asset('css/app.css') }}" rel="stylesheet">
         <title>Aenima Project</title>
     </head>
     <body class="antialiased">

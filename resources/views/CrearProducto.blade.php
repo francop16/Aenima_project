@@ -17,7 +17,7 @@
         <!-- Styles 
         <link href="{{ asset('css/app.css') }}" rel="stylesheet">-->
         <!-- Styles para heroku -->
-        <link href="{{ source_asset('css/app.css') }}" rel="stylesheet">
+        <link href="{{ secure_asset('css/app.css') }}" rel="stylesheet">
 
         
          <title>Aenima Project</title>
