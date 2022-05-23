@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Producto;
-
+use Illuminate\Support\Facades\Storage;
 class ProductosController extends Controller
 {
     /**
@@ -55,6 +55,7 @@ class ProductosController extends Controller
         $productoNuevo->nombre = $request->nombre;
         $productoNuevo->descripcion=$request->descripcion;
         $productoNuevo->precio= $request->precio;
+        $productoNuevo->activo=1;
         if ($request->hasFile('imagen')){
            
             $file = $request->file('imagen');
@@ -122,7 +123,7 @@ class ProductosController extends Controller
     $editarProducto->descripcion=$request->descripcion;
     $editarProducto->precio= $request->precio;
     $editarProducto->img = "13123183cdchdchcb";
-
+    $editarProducto->activo=1;
     $editarProducto->save();
 
     return redirect('/')->with('mensaje', 'Producto  Editado');
@@ -137,6 +138,8 @@ class ProductosController extends Controller
     public function destroy($id)
     {
         $borrarProducto = Producto::findOrFail($id);
+
+        unlink($borrarProducto->img);  ///// borro la imagen ////////////
 
         $borrarProducto->delete();
         return  redirect('/')->with('mensaje', 'Producto Eliminado');

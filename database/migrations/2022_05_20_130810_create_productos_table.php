@@ -19,6 +19,7 @@ class CreateProductosTable extends Migration
             $table->string('descripcion');
             $table->double('precio');
             $table->string('img')->nulleable();
+            $table->boolean('activo');
             $table->timestamps();
         });
     }

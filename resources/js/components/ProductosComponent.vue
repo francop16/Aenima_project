@@ -8,16 +8,22 @@
            <h3 class="alert alert-danger text-center">{{errormense}}</h3>
       </div>
       <div v-else>
+        <div class="from-group">
+          <label>Buscador</label>
+          <input type="text" id="buscador" v-model="buscar" @keyup="filtrar()" class="form-control" />             
+        </div>
 
-        <ul class="col-lg-12 col-md-12 col-sm-12 row container d-flex">
-          <li style="list-style:none" v-for="(producto, id) in productosCargados" :key="id" class="col-lg-4 col-md-6 col-sm-12 mt-2">
+        <ul class="row" id="productos" >
+          <li style="list-style:none"  v-for="(producto, id) in productosCargados" :key="id" v-if="producto.activo" class="col-lg-4 col-md-6 col-sm-12 mt-2">
              
-                  <div class="card" style="width: 18rem;">
-                    <img class="card-img-top background-size: cover;"  :src="producto.img" >
-                    <div class="card-body">
+                  <div id="cards" class="card"  style="width: 18rem;">
+                    <img class="card-img-top"  :src="producto.img" :alt="producto.img" >
+                     
+                    <div class="card-body bg-secondary text-white bg-gradient">
                       <h5 class="card-title ">{{producto.nombre}}</h5>
-                      <p class="card-text">{{producto.descripcion}}</p>
-                      <p class="card-text">{{producto.precio}}</p>
+                      <p class="card-text">Descripción: {{producto.descripcion}}</p>
+                      <p class="card-text">$ {{producto.precio}}</p>
+                     
                       <a @click="editar(producto.id)"  class="btn btn-primary">Ver Detalle</a>
                   
                   </div>
@@ -31,6 +37,8 @@
 
 
 <script>
+
+
     export default {
         data(){
             return{
@@ -38,6 +46,8 @@
                 errormense:'',
                 producto:[],
                 productosCargados:[],
+                buscar: '',
+                buscarPrecio: 0,
             }
         },
         mounted() {
@@ -57,6 +67,30 @@
 
                 
              }, 
+             filtrar(){
+                 const texto = this.buscar.toLocaleLowerCase();
+                 for(let producto of this.productosCargados){
+                  
+                   let nombre = producto.nombre.toLocaleLowerCase();
+            
+                   if( nombre.indexOf(texto) !== -1){ // compara por nombre 
+                   
+                      producto.activo=1;
+                   }else{
+                      
+                      let precio = String(producto.precio);
+                   
+                      if(precio.indexOf(texto) !== -1){ // compara por precio
+                       
+                         producto.activo=1;
+                      }else{
+                        producto.activo=0;
+                      }
+                    
+                   }
+                 }
+            
+             },
 
 
           }
@@ -64,3 +98,25 @@
     }
 
 </script>
+
+<style>
+  #productos .col-lg-4{
+    padding: 20px;
+  }
+
+  #productos img{
+    widows: 100%;
+    height: 180px;
+  }
+  #productos li:hover{
+    border: 5px solid #f7f7f7;
+    
+   
+  }
+  #cards:hover{
+    box-shadow: 2px 2px 5px #999;
+  }
+
+
+
+</style>
