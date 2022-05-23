@@ -45,7 +45,7 @@ class ProductosController extends Controller
             'nombre' => 'required',
             'descripcion' => 'required',
             'precio' => 'required|min:0',
-            'imagen' => 'required',
+            'imagen' => 'required| image | max:2048',
             
         ]);            
        
@@ -59,11 +59,13 @@ class ProductosController extends Controller
         if ($request->hasFile('imagen')){
            
             $file = $request->file('imagen');
+           
             $imgPath ='img/productos/';
             $filename = time().'-'.$file->getClientOriginalName();
-            $uploadSuccess = $request->file('imagen')->move($imgPath,$filename);
-           
-            $productoNuevo->img =  $imgPath.$filename;
+            $uploadSuccess = $request->file('imagen')->store('public/img/productos');
+            $url = Storage::url($uploadSuccess);
+      
+            $productoNuevo->img =  $url;
             
             
           
@@ -122,7 +124,6 @@ class ProductosController extends Controller
     $editarProducto->nombre = $request->nombre;
     $editarProducto->descripcion=$request->descripcion;
     $editarProducto->precio= $request->precio;
-    $editarProducto->img = "13123183cdchdchcb";
     $editarProducto->activo=1;
     $editarProducto->save();
 
@@ -139,7 +140,7 @@ class ProductosController extends Controller
     {
         $borrarProducto = Producto::findOrFail($id);
 
-        unlink($borrarProducto->img);  ///// borro la imagen ////////////
+        unlink(public_path($borrarProducto->img));  ///// borro la imagen ////////////
 
         $borrarProducto->delete();
         return  redirect('/')->with('mensaje', 'Producto Eliminado');
