@@ -16,6 +16,7 @@
     
         <!-- Styles -->
         <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+        <title>Aenima Project</title>
     </head>
      <body>
         
