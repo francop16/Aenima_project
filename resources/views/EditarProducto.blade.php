@@ -22,7 +22,7 @@
     </head>
      <body>
         
-        <h3 class="text-center mt-2">Crear Producto </h3>
+        <h3 class="text-center mt-2">Editar Producto </h3>
      
         <hr class="container">
         <div class="container">
